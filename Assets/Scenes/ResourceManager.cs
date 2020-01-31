@@ -10,4 +10,20 @@ public class ResourceManager : MonoBehaviour
     {
         return _breakableList[UnityEngine.Random.Range(0, _breakableList.Count)];
     }
+
+
+    public Breakable GetRandomHealthyBreakable()
+    {
+        Breakable breakable = null;
+        if (_breakableList.Count.Equals(0))
+        {
+            throw new System.Exception("Breakable list is empty")
+        }
+        while (breakable == null || !breakable.isFixed() || _breakableList.Count != 0)
+        {
+            breakable = GetRandomBreakable();
+        }
+        return breakable;
+    }
+
 }

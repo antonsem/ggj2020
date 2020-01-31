@@ -18,6 +18,11 @@ public class Breakable : MonoBehaviour
         health = Mathf.Max(health + damage, HealthMax);
     }
 
+    public bool isFixed()
+    {
+        return HealthMax.Equals(health);
+    }
+
     public void DoDamage(int damage)
     {
         health = Mathf.Min(health - damage, 0);
