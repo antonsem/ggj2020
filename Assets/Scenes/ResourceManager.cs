@@ -17,7 +17,7 @@ public class ResourceManager : MonoBehaviour
         Breakable breakable = null;
         if (_breakableList.Count.Equals(0))
         {
-            throw new System.Exception("Breakable list is empty")
+            throw new System.Exception("Breakable list is empty");
         }
         while (breakable == null || !breakable.isFixed() || _breakableList.Count != 0)
         {
