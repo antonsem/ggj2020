@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7979155224666295097}
   - component: {fileID: 5215609348575574247}
   - component: {fileID: 6830324527729851084}
+  - component: {fileID: 3522390382838326920}
   m_Layer: 0
   m_Name: pingpong_racket_Part_3
   m_TagString: BreakableParts
@@ -95,6 +96,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8527028529629509556, guid: 35e0e366603c54937a67fd25f495ca4b, type: 3}
+--- !u!114 &3522390382838326920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808035523469092173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fae6f3cb8cc1646a14595f93473a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 2
 --- !u!1 &2203937276950271150
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +152,7 @@ GameObject:
   - component: {fileID: 8105992403514771404}
   - component: {fileID: 8213385671162981492}
   - component: {fileID: 5939148107914275047}
+  - component: {fileID: 3410520505602021840}
   m_Layer: 0
   m_Name: pingpong_racket_Part_5
   m_TagString: BreakableParts
@@ -220,6 +235,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8830829038866776196, guid: 35e0e366603c54937a67fd25f495ca4b, type: 3}
+--- !u!114 &3410520505602021840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858983820888217039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fae6f3cb8cc1646a14595f93473a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 2
 --- !u!1 &2952811823189055571
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +353,7 @@ GameObject:
   - component: {fileID: 3843866793173272943}
   - component: {fileID: 7902317326711819313}
   - component: {fileID: 4021277380723496449}
+  - component: {fileID: 5694404796787526114}
   m_Layer: 0
   m_Name: pingpong_racket_Part_4
   m_TagString: BreakableParts
@@ -407,6 +436,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1149405307289892001, guid: 35e0e366603c54937a67fd25f495ca4b, type: 3}
+--- !u!114 &5694404796787526114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992287931278440130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fae6f3cb8cc1646a14595f93473a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 2
 --- !u!1 &6087417496782424344
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +612,7 @@ GameObject:
   - component: {fileID: 5933024352976871839}
   - component: {fileID: 2559953410852172320}
   - component: {fileID: 5150688197569990864}
+  - component: {fileID: 4143291287763949025}
   m_Layer: 0
   m_Name: pingpong_racket_Part_1
   m_TagString: BreakableParts
@@ -653,6 +696,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3018540672177883064, guid: 35e0e366603c54937a67fd25f495ca4b, type: 3}
+--- !u!114 &4143291287763949025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7101182160570739488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fae6f3cb8cc1646a14595f93473a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 2
 --- !u!1 &7625632901124428705
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +721,7 @@ GameObject:
   - component: {fileID: 6796025324840888494}
   - component: {fileID: 4691810662163897811}
   - component: {fileID: 5439005762442431657}
+  - component: {fileID: 7347248981550400724}
   m_Layer: 0
   m_Name: Base1
   m_TagString: BasePart
@@ -748,6 +805,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3188861999907982402, guid: 35e0e366603c54937a67fd25f495ca4b, type: 3}
+--- !u!114 &7347248981550400724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7625632901124428705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fae6f3cb8cc1646a14595f93473a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 2
 --- !u!1 &8375118846064212899
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +892,7 @@ GameObject:
   - component: {fileID: 4308980415855952949}
   - component: {fileID: 5786047843047191594}
   - component: {fileID: 8984699091778385905}
+  - component: {fileID: 8670236580305656522}
   m_Layer: 0
   m_Name: pingpong_racket_Part_8
   m_TagString: BreakableParts
@@ -905,3 +976,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2481466592942065285, guid: 35e0e366603c54937a67fd25f495ca4b, type: 3}
+--- !u!114 &8670236580305656522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8905665306650818948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fae6f3cb8cc1646a14595f93473a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 2

@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("HEALTH: " + Health);
         ScoreWheelController.SetScoreWheelValue?.Invoke(Health);
 
         if (!_gameEnabled || IsGameOver)

@@ -56,6 +56,16 @@ public class Breakable : MonoBehaviour
     {
 
         health = Mathf.Min(health + damage, HealthMax);
+        if(health<=0)
+        {
+            foreach (GameObject part in parts)
+            {
+                Destroy(part.GetComponent<Rigidbody>());
+                Destroy(part.GetComponent<ChildrenCollisionRecognizer>());
+            }
+            Destroy(basePart.GetComponent<Rigidbody>());
+            Destroy(basePart.GetComponent<ChildrenCollisionRecognizer>());
+        }
         Debug.Log("Healed " + transform.name + " for " + damage + " to " + health);
         if (isFixed())
         {

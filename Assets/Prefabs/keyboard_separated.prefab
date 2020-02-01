@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4474105944864802594}
   - component: {fileID: 2912430284340940615}
   - component: {fileID: 762318770770080624}
+  - component: {fileID: 8994552818645752548}
   m_Layer: 0
   m_Name: keyboard_Part_1
   m_TagString: BasePart
@@ -94,6 +95,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4671579588678457561, guid: 3457d746488c845b0848d15631988022, type: 3}
+--- !u!114 &8994552818645752548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983464161829083765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fae6f3cb8cc1646a14595f93473a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 3
 --- !u!1 &1012272952542859192
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +120,7 @@ GameObject:
   - component: {fileID: 598254817435243826}
   - component: {fileID: 1650412370315398380}
   - component: {fileID: 6574121754762091225}
+  - component: {fileID: 8294517939527204707}
   m_Layer: 0
   m_Name: keyboard_Part_005
   m_TagString: BreakableParts
@@ -188,6 +203,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6347774744587166381, guid: 3457d746488c845b0848d15631988022, type: 3}
+--- !u!114 &8294517939527204707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012272952542859192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fae6f3cb8cc1646a14595f93473a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 3
 --- !u!1 &1313179844277147523
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +259,7 @@ GameObject:
   - component: {fileID: 6014704320202959307}
   - component: {fileID: 7980874897948987914}
   - component: {fileID: 5093272083588080813}
+  - component: {fileID: 7981839817779319505}
   m_Layer: 0
   m_Name: keyboard_Part_2
   m_TagString: BreakableParts
@@ -313,6 +342,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4130687812413768094, guid: 3457d746488c845b0848d15631988022, type: 3}
+--- !u!114 &7981839817779319505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324326680679001385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fae6f3cb8cc1646a14595f93473a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 3
 --- !u!1 &2696189079306263083
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +367,7 @@ GameObject:
   - component: {fileID: 8363555573481879362}
   - component: {fileID: 912120400275460133}
   - component: {fileID: 4219067808194646156}
+  - component: {fileID: 7350252786534502378}
   m_Layer: 0
   m_Name: keyboard_Part_6
   m_TagString: BreakableParts
@@ -407,6 +450,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3263964990083708844, guid: 3457d746488c845b0848d15631988022, type: 3}
+--- !u!114 &7350252786534502378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696189079306263083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fae6f3cb8cc1646a14595f93473a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 3
 --- !u!1 &3706258095790252797
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +506,7 @@ GameObject:
   - component: {fileID: 5089808878846679126}
   - component: {fileID: 5523910724817621757}
   - component: {fileID: 8139907873603923580}
+  - component: {fileID: 3776366042661993979}
   m_Layer: 0
   m_Name: keyboard_Part_3
   m_TagString: BreakableParts
@@ -532,6 +589,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7096749825429766091, guid: 3457d746488c845b0848d15631988022, type: 3}
+--- !u!114 &3776366042661993979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3953832708370399992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fae6f3cb8cc1646a14595f93473a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 3
 --- !u!1 &5074299804173969631
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +738,7 @@ GameObject:
   - component: {fileID: 9032707835498305595}
   - component: {fileID: 4032531593178676112}
   - component: {fileID: 6059027098831318534}
+  - component: {fileID: 2683439124316531526}
   m_Layer: 0
   m_Name: keyboard_Part_4
   m_TagString: BreakableParts
@@ -750,6 +821,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1455028318982673692, guid: 3457d746488c845b0848d15631988022, type: 3}
+--- !u!114 &2683439124316531526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7369816797653553917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fae6f3cb8cc1646a14595f93473a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 3
 --- !u!1 &7440281173229660030
 GameObject:
   m_ObjectHideFlags: 0
