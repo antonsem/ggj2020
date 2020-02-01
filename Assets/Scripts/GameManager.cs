@@ -40,7 +40,38 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public float Health { get { return (_gameOverCount - InstanceDeathCount) / (float) _gameOverCount; } }
+    public int InstanceDamagedCount
+    {
+        get
+        {
+            var count = 0;
+            foreach (var instance in _instanceList)
+            {
+                if (!instance.isFixed() && !instance.isDeath)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+    }
+
+    public float Health {
+        get
+        {
+            var segmentSize = 1f / _gameOverCount;
+            var instanceDeathCount = InstanceDeathCount;
+
+            var undeadCount = (_instanceList.Count - instanceDeathCount) + 1;
+
+            var progressMicro = (undeadCount -InstanceDamagedCount) / (float) undeadCount;
+            var progressMacro = (_gameOverCount - instanceDeathCount) / (float)_gameOverCount;
+
+            var progress = Mathf.Max(progressMacro - segmentSize + progressMicro * segmentSize, 0f);
+            return progress;
+        }
+    }
     public float GameTime { get { return _gameEnabled ? Time.time - _timeGameStart : 0f; } }
     public int BreakablesCount { get { return _instanceList.Count; } }
     public bool IsGameOver { get { return InstanceDeathCount >= _gameOverCount; } }
