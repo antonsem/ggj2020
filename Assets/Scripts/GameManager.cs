@@ -3,15 +3,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Variables")]
-    [SerializeField] private int _instanceCount;
     [SerializeField] private float damageMin = .2f;
     [SerializeField] private float damageMax = .6f;
     [SerializeField] private float _nextEventWaitMax = .2f;
     [SerializeField] private int _gameOverCount;
-
-    [Header("References")]
-    [SerializeField] private ResourceManager _resourceManager;
 
     private List<Breakable> _instanceList = new List<Breakable>();
 
@@ -42,7 +37,7 @@ public class GameManager : MonoBehaviour
     private float _timeGameStart;
     private float _timeNextEvent;
 
-    private int _cycleFuse = 64; // debug
+    private int _cycleFuse = 512; // debug
 
     private void Start()
     {
@@ -84,16 +79,6 @@ public class GameManager : MonoBehaviour
 
     private void Initialize()
     {
-        for (int count = 0; count < _instanceCount; count++)
-        {
-            var position = Random.onUnitSphere + Camera.main.transform.position;
-            var rotation = Quaternion.identity;
-
-            var instance = Instantiate(_resourceManager.GetRandomBreakable(), position, rotation);
-
-            _instanceList.Add(instance);
-        }
-
         _timeGameStart = Time.time;
 
         NextEvent();
