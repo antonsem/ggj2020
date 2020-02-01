@@ -15,7 +15,7 @@ public class SparkGenerator : Singleton<SparkGenerator>
 
         if (collision.contacts.Length > 0)
         {
-            ParticleSystem sys = ExtraTools.ResourceManager.Instance.spark.Get(collision.contacts[0].point).GetComponent<ParticleSystem>();
+            ParticleSystem sys = ExtraTools.ResourceManager.Instance.spark.Get(collision.contacts[0].point + collision.contacts[0].normal * 0.025f).GetComponent<ParticleSystem>();
             sys.Play();
             sys.transform.up = collision.contacts[0].normal;
 
