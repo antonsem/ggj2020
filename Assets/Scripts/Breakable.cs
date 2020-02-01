@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour
 {
-    public readonly int HealthMax = 40;
-
+    public readonly float HealthMax = 1;
+    [SerializeField]
+    private Fixer.FixerType fixerType = Fixer.FixerType.Hammer;
     public bool isDeath
     {
         get
@@ -14,7 +15,7 @@ public class Breakable : MonoBehaviour
         }
     }
 
-    private int health;
+    private float health;
     private GameObject basePart;
     private List<GameObject> parts = new List<GameObject>();
 
@@ -46,9 +47,15 @@ public class Breakable : MonoBehaviour
         }
     }
 
-    public void UndoDamage(int damage)
+    public void UndoDamage(float damage)
     {
+
         health = Mathf.Min(health + damage, HealthMax);
+        Debug.Log("Healed " + transform.name + " for " + damage + " to " + health);
+        if(isFixed())
+        {
+            Fix();
+        }
     }
 
     public bool isFixed()
@@ -56,7 +63,7 @@ public class Breakable : MonoBehaviour
         return HealthMax.Equals(health);
     }
 
-    public void DoDamage(int damage)
+    public void DoDamage(float damage)
     {
         health = Mathf.Max(health - damage, 0);
 
@@ -114,4 +121,33 @@ public class Breakable : MonoBehaviour
         StartCoroutine(MoveToPosition(objectToMove, Vector3.zero, Quaternion.identity, time));
     }
 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!isFixed())
+        {
+            Fixer fixer = collision.gameObject.GetComponent<Fixer>();
+
+            if (fixer != null && fixer.getFixerType().Equals(fixerType))
+            {
+                UndoDamage(fixer.getHealingPower());
+            }
+
+        }
+    }
+
+    [MyBox.ButtonMethod]
+    void FakeHitWithHammer()
+    {
+        if (!isFixed())
+        {
+            Fixer fixer = new Fixer();
+
+            if (fixer != null && fixer.getFixerType().Equals(fixerType))
+            {
+                UndoDamage(fixer.getHealingPower());
+            }
+
+        }
+    }
 }

@@ -54,8 +54,8 @@ public class GameManager : MonoBehaviour
     private bool _gameInitialized;
     private float _timeGameStart;
     private float _timeNextEvent;
-    private int _totalHealthMax;
-    private int _totalHealth;
+    private float _totalHealthMax;
+    private float _totalHealth;
 
     // instances
     private List<Breakable> _breakableList = new List<Breakable>();
