@@ -117,9 +117,13 @@ public class Breakable : MonoBehaviour
     [MyBox.ButtonMethod]
     public void Break()
     {
+        if (GetComponent<AudioSource>() != null)
+        {
+            GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
+        }
         foreach (GameObject part in parts)
         {
-            part.AddComponent<Rigidbody>().AddExplosionForce(100f,Vector3.zero,106f);
+            part.AddComponent<Rigidbody>().AddExplosionForce(Random.Range(50, 120), new Vector3(Random.Range(-0.5f,0.5f), Random.Range(-0.5f, 0.5f),Random.Range(-0.5f, 0.5f)), 106f);
        
             part.AddComponent<ChildrenCollisionRecognizer>().breakable = this;
         }
