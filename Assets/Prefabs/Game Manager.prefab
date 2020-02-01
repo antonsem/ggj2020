@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6848c10fe6ea94788732f167a92b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _instanceCount: 6
   damageMin: 0.2
   damageMax: 0.6
-  _nextEventWaitMax: 0.2
-  _resourceManager: {fileID: 0}
+  _nextEventWaitMax: 10
+  _gameOverCount: 60
+  _instanceList: []

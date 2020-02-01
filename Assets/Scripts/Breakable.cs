@@ -39,10 +39,8 @@ public class Breakable : MonoBehaviour
         {
             foreach (Transform grandChildren in children)
             {
-                Debug.Log(grandChildren.name);
                 if (grandChildren.tag.Equals("BreakableParts"))
                 {
-                    Debug.Log("Object added");
                     parts.Add(grandChildren.gameObject);
                 }
                 else if (grandChildren.tag.Equals("BasePart"))
@@ -182,7 +180,7 @@ public class Breakable : MonoBehaviour
     }
 
     [MyBox.ButtonMethod]
-    void FakeHitWithHammer()
+    private void FakeHitWithHammer()
     {
         if (!isFixed())
         {

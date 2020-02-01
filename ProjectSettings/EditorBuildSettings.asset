@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Anton.unity
-    guid: c4347b43872a2ed4eb8ec72b502dcd33
+    path: Assets/Scenes/Main.unity
+    guid: 4ff3a9e4b5511b04294c91561ee183d3
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: c46c6d5c90e6b3d40a10b060f2e74779,
       type: 2}
