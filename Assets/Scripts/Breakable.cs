@@ -15,8 +15,8 @@ public class Breakable : MonoBehaviour
     }
 
     private int health;
-
-    private List<GameObject> parts;
+    private GameObject basePart;
+    private List<GameObject> parts = new List<GameObject>();
 
     private void Start()
     {
@@ -27,15 +27,23 @@ public class Breakable : MonoBehaviour
 
     private void initParts(Transform t)
     {
-        /*foreach (Transform children in t)
+        foreach (Transform children in t)
         {
-            if (t.tag.Equals("BreakableParts"))
+            foreach (Transform grandChildren in children)
             {
-                Debug.Log("Object added");
-                parts.Add(t.gameObject);
+                Debug.Log(grandChildren.name);
+                if (grandChildren.tag.Equals("BreakableParts"))
+                {
+                    Debug.Log("Object added");
+                    parts.Add(grandChildren.gameObject);
+                }
+                else if (grandChildren.tag.Equals("BasePart"))
+                {
+                    basePart = grandChildren.gameObject;
+                }
             }
-            initParts(t);
-        }*/
+
+        }
     }
 
     public void UndoDamage(int damage)
@@ -72,6 +80,7 @@ public class Breakable : MonoBehaviour
         {
             part.AddComponent<Rigidbody>();
         }
+        basePart.AddComponent<Rigidbody>().isKinematic = true;
     }
 
     [MyBox.ButtonMethod]
@@ -80,21 +89,21 @@ public class Breakable : MonoBehaviour
         foreach (GameObject part in parts)
         {
             Destroy(part.GetComponent<Rigidbody>());
-            AnimateToDefault(part.transform, 3.0f);
+            Destroy(basePart.GetComponent<Rigidbody>());
+            AnimateToDefault(part.transform, 1.0f);
+
         }
-
-
     }
 
     public IEnumerator MoveToPosition(Transform objectToMove, Vector3 position, Quaternion rotation, float time)
     {
         float elapsedTime = 0;
-        Vector3 startingPos = objectToMove.position;
-        Quaternion startingRot = objectToMove.rotation;
+        Vector3 startingPos = objectToMove.localPosition;
+        Quaternion startingRot = objectToMove.localRotation;
         while (elapsedTime < time)
         {
-            objectToMove.position = Vector3.Lerp(startingPos, position, (elapsedTime / time));
-            objectToMove.rotation = Quaternion.Lerp(startingRot, rotation, (elapsedTime / time));
+            objectToMove.localPosition = Vector3.Lerp(startingPos, position, (elapsedTime / time));
+            objectToMove.localRotation = Quaternion.Lerp(startingRot, rotation, (elapsedTime / time));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
