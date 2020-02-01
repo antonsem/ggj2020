@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 967669727779593440}
-  - component: {fileID: 967669727779593455}
+  - component: {fileID: 3253569973978606127}
   m_Layer: 0
   m_Name: ResourceManager_Anton
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &967669727779593455
+--- !u!114 &3253569973978606127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,9 +40,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 967669727779593454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 765be3ab999899a46b24e0a4aa780fdd, type: 3}
+  m_Script: {fileID: 11500000, guid: bb4edb92fb929f14cb97c61eaf6f2d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spark:
-    prefab: {fileID: 0}
+    prefab: {fileID: 8826587123084985093, guid: 028b2fbd5e068f64d8c60719a0d9ee33,
+      type: 3}
     pool: []

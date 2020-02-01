@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.antonsem.extratools": "https://github.com/antonsem/ExtraToolsPackage.git",
     "com.mybox": "https://github.com/Deadcows/MyBox.git",
     "com.unity.ide.visualstudio": "2.0.0",
     "com.unity.probuilder": "4.2.3",
@@ -45,10 +44,6 @@
     "com.unity.modules.xr": "1.0.0"
   },
   "lock": {
-    "com.antonsem.extratools": {
-      "revision": "HEAD",
-      "hash": "6fb14d65bfa3c0c069aa520bd628b3a0c66caf68"
-    },
     "com.mybox": {
       "revision": "HEAD",
       "hash": "c0a62452d5e378136d87ee7c052906bf370e6fcf"
