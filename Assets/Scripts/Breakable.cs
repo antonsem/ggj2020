@@ -67,17 +67,7 @@ public class Breakable : MonoBehaviour
     {
         health = Mathf.Max(health - damage, 0);
 
-        if (health <= 0)
-        {
-            Death();
-        }
-
         Debug.Log("received damage " + damage + " health now " + health + " is death " + isDeath);
-    }
-
-    private void Death()
-    {
-        GameManager.Death?.Invoke(this);
     }
 
     [MyBox.ButtonMethod]

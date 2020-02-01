@@ -33,7 +33,7 @@ public class UserInterfaceController : MonoBehaviour
     private void UpdateItems()
     {
         var breakablesCount = gameManager.BreakablesCount;
-        var breakablesCountAlive = breakablesCount - gameManager.BreakablesCountDeath;
+        var breakablesCountAlive = breakablesCount - gameManager.InstanceDeathCount;
 
         var text = breakablesCountAlive + "/" + breakablesCount;
 
