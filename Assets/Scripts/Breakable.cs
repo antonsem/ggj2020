@@ -7,6 +7,11 @@ public class Breakable : MonoBehaviour
     public readonly float HealthMax = 1;
     [SerializeField]
     private Fixer.FixerType fixerType = Fixer.FixerType.Hammer;
+
+    [SerializeField] private float _autoDamageMin;
+    [SerializeField] private float _autoDamageMax;
+    [SerializeField] private float _autoDamageInterval; // seconds
+
     public bool isDeath
     {
         get
@@ -18,6 +23,8 @@ public class Breakable : MonoBehaviour
     private float health;
     private GameObject basePart;
     private List<GameObject> parts = new List<GameObject>();
+
+    private Coroutine _autoDamage;
 
     private void Start()
     {
@@ -55,6 +62,12 @@ public class Breakable : MonoBehaviour
         if(isFixed())
         {
             Fix();
+
+            if (_autoDamage != null)
+            {
+                StopCoroutine(_autoDamage);
+                _autoDamage = null;
+            }
         }
     }
 
@@ -67,7 +80,24 @@ public class Breakable : MonoBehaviour
     {
         health = Mathf.Max(health - damage, 0);
 
+        if (!isFixed() && _autoDamage == null)
+        {
+            _autoDamage = StartCoroutine(AutoDamage());
+        }
+
         Debug.Log("received damage " + damage + " health now " + health + " is death " + isDeath);
+    }
+
+    private IEnumerator AutoDamage()
+    {
+        while (!isDeath)
+        {
+            yield return new WaitForSeconds(_autoDamageInterval);
+
+            DoDamage(Random.Range(_autoDamageMin, _autoDamageMax));
+        }
+
+        _autoDamage = null;
     }
 
     [MyBox.ButtonMethod]
