@@ -202,6 +202,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a63bccdde71fa84e84535c89ba4de73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fixerType: 0
+  _autoDamageMin: 0.01
+  _autoDamageMax: 0.03
+  _autoDamageInterval: 1
+  defaultFixer: {fileID: 3993927812332913510, guid: 41c6ed977c7a44497abc5d2b30afbe7b,
+    type: 3}
 --- !u!1 &7556533301312961623
 GameObject:
   m_ObjectHideFlags: 0
