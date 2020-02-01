@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1884434715502122312, guid: 3457d746488c845b0848d15631988022, type: 3}
+  - {fileID: 2100000, guid: a98107c0db3c24785b3f60de7eefb9b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,7 +153,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1884434715502122312, guid: 3457d746488c845b0848d15631988022, type: 3}
+  - {fileID: 2100000, guid: a98107c0db3c24785b3f60de7eefb9b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -278,7 +278,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1884434715502122312, guid: 3457d746488c845b0848d15631988022, type: 3}
+  - {fileID: 2100000, guid: a98107c0db3c24785b3f60de7eefb9b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -372,7 +372,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1884434715502122312, guid: 3457d746488c845b0848d15631988022, type: 3}
+  - {fileID: 2100000, guid: a98107c0db3c24785b3f60de7eefb9b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -497,7 +497,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1884434715502122312, guid: 3457d746488c845b0848d15631988022, type: 3}
+  - {fileID: 2100000, guid: a98107c0db3c24785b3f60de7eefb9b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -715,7 +715,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1884434715502122312, guid: 3457d746488c845b0848d15631988022, type: 3}
+  - {fileID: 2100000, guid: a98107c0db3c24785b3f60de7eefb9b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -800,7 +800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fixerType: 0
-  _autoDamageMin: 0
-  _autoDamageMax: 0
-  _autoDamageInterval: 0
-  defaultFixer: {fileID: 0}
+  _autoDamageMin: 0.01
+  _autoDamageMax: 0.03
+  _autoDamageInterval: 1
+  defaultFixer: {fileID: 3993927812332913510, guid: 41c6ed977c7a44497abc5d2b30afbe7b,
+    type: 3}
