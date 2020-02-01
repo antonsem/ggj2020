@@ -148,6 +148,12 @@ public class Breakable : MonoBehaviour
             objectToMove.localPosition = Vector3.Lerp(startingPos, position, (elapsedTime / time));
             objectToMove.localRotation = Quaternion.Lerp(startingRot, rotation, (elapsedTime / time));
             elapsedTime += Time.deltaTime;
+            if ((elapsedTime / time) > 0.98f) 
+            {
+                objectToMove.localPosition = position;
+                objectToMove.localRotation = rotation;
+            }
+     
             yield return null;
         }
     }
