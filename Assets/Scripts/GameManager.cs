@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
             }
 
             var selected = _instanceList[Random.Range(0, _instanceList.Count)];
-            selected.DoDamage(Random.Range(damageMin, damageMax));
+            selected.InitDamage(Random.Range(damageMin, damageMax));
 
             _cycleFuse--;
 

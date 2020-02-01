@@ -76,14 +76,19 @@ public class Breakable : MonoBehaviour
         return HealthMax.Equals(health);
     }
 
-    public void DoDamage(float damage)
+    public void InitDamage(float damage)
     {
-        health = Mathf.Max(health - damage, 0);
+        DoDamage(damage);
 
         if (!isFixed() && _autoDamage == null)
         {
             _autoDamage = StartCoroutine(AutoDamage());
         }
+    }
+
+    private void DoDamage(float damage)
+    {
+        health = Mathf.Max(health - damage, 0);
 
         Debug.Log("received damage " + damage + " health now " + health + " is death " + isDeath);
     }
