@@ -45,11 +45,11 @@ public class UserInterfaceController : MonoBehaviour
         var health = gameManager.Health;
 
         var text = string.Empty;
-        text += health >= .2 ? "*" : "-";
-        text += health >= .4 ? "*" : "-";
-        text += health >= .6 ? "*" : "-";
-        text += health >= .8 ? "*" : "-";
-        text += health >= 1 ? "*" : "-";
+        text += health >= .2f ? "*" : "-";
+        text += health >= .4f ? "*" : "-";
+        text += health >= .6f ? "*" : "-";
+        text += health >= .8f ? "*" : "-";
+        text += health >= 1f ? "*" : "-";
 
         _health.text = text;
     }

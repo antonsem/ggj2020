@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static Action<bool> SetGameEnabled;
+
     [SerializeField] private float damageMin = .2f;
     [SerializeField] private float damageMax = .6f;
     [SerializeField] private float _nextEventWaitMax = .2f;
@@ -39,7 +42,17 @@ public class GameManager : MonoBehaviour
 
     private int _cycleFuse = 512; // debug
 
-    private void Start()
+    private void OnEnable()
+    {
+        SetGameEnabled += OnSetGameEnabled;
+    }
+
+    private void OnDisable()
+    {
+        SetGameEnabled -= OnSetGameEnabled;
+    }
+
+    private void OnSetGameEnabled(bool value)
     {
         Initialize();
     }
@@ -68,8 +81,8 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            var selected = _instanceList[Random.Range(0, _instanceList.Count)];
-            selected.InitDamage(Random.Range(damageMin, damageMax));
+            var selected = _instanceList[UnityEngine.Random.Range(0, _instanceList.Count)];
+            selected.InitDamage(UnityEngine.Random.Range(damageMin, damageMax));
 
             _cycleFuse--;
 
@@ -79,6 +92,11 @@ public class GameManager : MonoBehaviour
 
     private void Initialize()
     {
+        foreach (var instance in _instanceList)
+        {
+            instance.Initialize();
+        }
+
         _timeGameStart = Time.time;
 
         NextEvent();
@@ -88,7 +106,7 @@ public class GameManager : MonoBehaviour
 
     private void NextEvent()
     {
-        _timeNextEvent = Time.time + Random.Range(0, _nextEventWaitMax);
+        _timeNextEvent = Time.time + UnityEngine.Random.Range(0, _nextEventWaitMax);
         Debug.Log("time " + Time.time + " timeNextEvent " + _timeNextEvent);
     }
 }

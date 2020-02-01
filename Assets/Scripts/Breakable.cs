@@ -26,7 +26,7 @@ public class Breakable : MonoBehaviour
 
     private Coroutine _autoDamage;
 
-    private void Start()
+    public void Initialize()
     {
         health = HealthMax;
 
