@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _nextEventWaitMax = .2f;
     [SerializeField] private int _gameOverCount;
 
-    private List<Breakable> _instanceList = new List<Breakable>();
+    [SerializeField] private List<Breakable> _instanceList = new List<Breakable>();
 
     public int InstanceDeathCount
     {
