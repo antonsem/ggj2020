@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour
 {
-    public readonly int HealthMax = 100;
+    public readonly int HealthMax = 40;
+
+    public bool isDeath
+    {
+        get
+        {
+            return health <= 0;
+        }
+    }
 
     private int health;
 
@@ -13,6 +21,7 @@ public class Breakable : MonoBehaviour
     private void Start()
     {
         health = HealthMax;
+
         initParts(transform);
     }
 
@@ -31,7 +40,7 @@ public class Breakable : MonoBehaviour
 
     public void UndoDamage(int damage)
     {
-        health = Mathf.Max(health + damage, HealthMax);
+        health = Mathf.Min(health + damage, HealthMax);
     }
 
     public bool isFixed()
@@ -41,12 +50,14 @@ public class Breakable : MonoBehaviour
 
     public void DoDamage(int damage)
     {
-        health = Mathf.Min(health - damage, 0);
+        health = Mathf.Max(health - damage, 0);
 
         if (health <= 0)
         {
             Death();
         }
+
+        Debug.Log("received damage " + damage + " health now " + health + " is death " + isDeath);
     }
 
     private void Death()
