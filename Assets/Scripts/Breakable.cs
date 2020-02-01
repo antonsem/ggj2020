@@ -119,7 +119,8 @@ public class Breakable : MonoBehaviour
     {
         foreach (GameObject part in parts)
         {
-            part.AddComponent<Rigidbody>();
+            part.AddComponent<Rigidbody>().AddExplosionForce(100f,Vector3.zero,106f);
+       
             part.AddComponent<ChildrenCollisionRecognizer>().breakable = this;
         }
         basePart.AddComponent<Rigidbody>().isKinematic = true;
