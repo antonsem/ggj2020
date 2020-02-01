@@ -31,16 +31,14 @@ public class GameManager : MonoBehaviour
     }
 
     public float Health { get { return InstanceDeathCount / _gameOverCount; } }
-    public float GameTime { get { return _gameInitialized ? Time.time - _timeGameStart : 0f; } }
+    public float GameTime { get { return _gameEnabled ? Time.time - _timeGameStart : 0f; } }
     public int BreakablesCount { get { return _instanceList.Count; } }
     public bool IsGameOver { get { return InstanceDeathCount >= _gameOverCount; } }
 
-    private bool _gameInitialized;
+    private bool _gameEnabled;
 
     private float _timeGameStart;
     private float _timeNextEvent;
-
-    private int _cycleFuse = 512; // debug
 
     private void OnEnable()
     {
@@ -54,12 +52,17 @@ public class GameManager : MonoBehaviour
 
     private void OnSetGameEnabled(bool value)
     {
-        Initialize();
+        if (value)
+        {
+            Initialize();
+        }
+
+        _gameEnabled = value;
     }
 
     private void Update()
     {
-        if (!_gameInitialized || IsGameOver || _cycleFuse <= 0)
+        if (!_gameEnabled || IsGameOver)
         {
             return;
         }
@@ -76,6 +79,11 @@ public class GameManager : MonoBehaviour
                 }
             }
 
+            if (_instanceList.Count - foundList.Count >= _gameOverCount)
+            {
+                GameManager.SetGameEnabled?.Invoke(false);
+                return;
+            }
             if (foundList.Count == 0)
             {
                 return;
@@ -83,8 +91,6 @@ public class GameManager : MonoBehaviour
 
             var selected = _instanceList[UnityEngine.Random.Range(0, _instanceList.Count)];
             selected.InitDamage(UnityEngine.Random.Range(damageMin, damageMax));
-
-            _cycleFuse--;
 
             NextEvent();
         }
@@ -100,8 +106,6 @@ public class GameManager : MonoBehaviour
         _timeGameStart = Time.time;
 
         NextEvent();
-
-        _gameInitialized = true;
     }
 
     private void NextEvent()
