@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &345811703808275267
+--- !u!1 &7424207139929856476
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 345811703808275277}
-  - component: {fileID: 345811703808275266}
+  - component: {fileID: 7424207139929856478}
+  - component: {fileID: 7424207139929856477}
   m_Layer: 0
-  m_Name: AudioPlayer
+  m_Name: Metronome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &345811703808275277
+--- !u!4 &7424207139929856478
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345811703808275267}
+  m_GameObject: {fileID: 7424207139929856476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,22 +31,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &345811703808275266
+--- !u!114 &7424207139929856477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345811703808275267}
+  m_GameObject: {fileID: 7424207139929856476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca736739f2e534c4d9c72ac8ad8b9516, type: 3}
+  m_Script: {fileID: 11500000, guid: b296806f302f47f488a93920969a4667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  types: 0000000001000000020000000300000004000000
-  sounds:
-  - {fileID: 8300000, guid: ab799d6a27ce16d43a78ef903fbe83a4, type: 3}
-  - {fileID: 8300000, guid: 2df1f9f4860dbdf4dbb0b731bf4341b9, type: 3}
-  - {fileID: 8300000, guid: 1eb4d782553871f49a2c5c2489b829ee, type: 3}
-  - {fileID: 8300000, guid: 53c2102189fa77441b3395e03748f306, type: 3}
-  - {fileID: 8300000, guid: 652d6f79ea9fce745a553da9cdddda60, type: 3}
+  beatTime: 0.75
+  preBeatBuffer: 0.1

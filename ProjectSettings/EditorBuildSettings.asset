@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/StagedRoom_Anton.unity
+    guid: 591b0f4c3a1ebc249a69efa0b291a03c
+  - enabled: 0
     path: Assets/Scenes/Anton.unity
     guid: c4347b43872a2ed4eb8ec72b502dcd33
   - enabled: 0

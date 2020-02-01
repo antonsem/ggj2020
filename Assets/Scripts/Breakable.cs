@@ -5,8 +5,6 @@ using UnityEngine;
 public class Breakable : MonoBehaviour
 {
     public readonly float HealthMax = 1;
-    [SerializeField]
-    private Fixer.FixerType fixerType = Fixer.FixerType.Hammer;
 
     [SerializeField] private float _autoDamageMin;
     [SerializeField] private float _autoDamageMax;
@@ -185,28 +183,12 @@ public class Breakable : MonoBehaviour
 
     public void Collision(Collision collision)
     {
-        if (!isFixed() && collision.transform.tag.Equals("Hammer"))
+        if (!isFixed() && collision.rigidbody.gameObject.TryGetComponent(out Fixer fixer))
         {
-            Fixer fixer = collision.rigidbody.gameObject.GetComponent<Fixer>();
-
-            if (fixer != null && fixer.getFixerType().Equals(fixerType))
-            {
+            if (fixer.controller.GotTheBeat)
                 UndoDamage(fixer.getHealingPower());
-            }
-
-        }
-    }
-
-    [MyBox.ButtonMethod]
-    private void FakeHitWithHammer()
-    {
-        if (!isFixed())
-        {
-            if (defaultFixer != null && defaultFixer.getFixerType().Equals(fixerType))
-            {
-                UndoDamage(defaultFixer.getHealingPower());
-            }
-
+            else
+                AudioPlayer.Instance.Play(SoundType.Reject, transform.position);
         }
     }
 }

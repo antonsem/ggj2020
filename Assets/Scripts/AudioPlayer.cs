@@ -6,13 +6,14 @@ public enum SoundType
     Default,
     Anvil,
     Pipe,
-    Nail
+    Nail,
+    Reject
 }
 
 public class AudioPlayer : Singleton<AudioPlayer>
 {
     [SerializeField]
-    private SoundType[] types = new SoundType[] { SoundType.Default, SoundType.Anvil, SoundType.Pipe, SoundType.Nail };
+    private SoundType[] types = new SoundType[] { SoundType.Default, SoundType.Anvil, SoundType.Pipe, SoundType.Nail, SoundType.Reject };
     [SerializeField, RequiredField]
     private AudioClip[] sounds;
 
