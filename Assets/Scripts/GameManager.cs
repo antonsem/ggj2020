@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static Action<bool> SetGameEnabled;
+    public static Action<int> SetGameScore;
 
     [SerializeField] private float damageMin = .2f;
     [SerializeField] private float damageMax = .6f;
@@ -14,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Breakable> _instanceList = new List<Breakable>();
 
     [SerializeField] private bool _autostart;
+
+    private Coroutine _scoreCounter;
 
     private void Start()
     {
@@ -31,6 +35,23 @@ public class GameManager : MonoBehaviour
             foreach (var instance in _instanceList)
             {
                 if (instance.isDeath)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+    }
+
+    public int InstanceFixedCount
+    {
+        get
+        {
+            var count = 0;
+            foreach (var instance in _instanceList)
+            {
+                if (instance.isFixed())
                 {
                     count++;
                 }
@@ -93,9 +114,17 @@ public class GameManager : MonoBehaviour
 
     private void OnSetGameEnabled(bool value)
     {
+        if (_scoreCounter != null)
+        {
+            StopCoroutine(_scoreCounter);
+            _scoreCounter = null;
+        }
+
         if (value)
         {
             Initialize();
+
+            _scoreCounter = StartCoroutine(ScoreCounter());
         }
 
         _gameEnabled = value;
@@ -132,7 +161,7 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            var selected = _instanceList[UnityEngine.Random.Range(0, _instanceList.Count)];
+            var selected = foundList[UnityEngine.Random.Range(0, foundList.Count)];
             selected.InitDamage(UnityEngine.Random.Range(damageMin, damageMax));
 
             NextEvent();
@@ -149,6 +178,19 @@ public class GameManager : MonoBehaviour
         _timeGameStart = Time.time;
 
         NextEvent();
+    }
+
+    private IEnumerator ScoreCounter()
+    {
+        var score = 0;
+
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+
+            score += InstanceFixedCount;
+            GameManager.SetGameScore?.Invoke(score);
+        }
     }
 
     private void NextEvent()
