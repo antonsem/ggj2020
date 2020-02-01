@@ -109,6 +109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixerType: 0
   _autoDamageMin: 0
-  _autoDamageMax: 0.8
+  _autoDamageMax: 0.1
   _autoDamageInterval: 1
   defaultFixer: {fileID: 0}

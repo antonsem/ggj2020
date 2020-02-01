@@ -127,8 +127,11 @@ public class Breakable : MonoBehaviour
        
             part.AddComponent<ChildrenCollisionRecognizer>().breakable = this;
         }
-        basePart.AddComponent<Rigidbody>().isKinematic = true;
-        basePart.AddComponent<ChildrenCollisionRecognizer>().breakable = this;
+        if (basePart != null)
+        {
+            basePart.AddComponent<Rigidbody>().isKinematic = true;
+            basePart.AddComponent<ChildrenCollisionRecognizer>().breakable = this;
+        }
     }
 
     [MyBox.ButtonMethod]
