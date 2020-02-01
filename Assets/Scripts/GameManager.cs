@@ -13,6 +13,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<Breakable> _instanceList = new List<Breakable>();
 
+    [SerializeField] private bool _autostart;
+
+    private void Start()
+    {
+        if (_autostart)
+        {
+            SetGameEnabled?.Invoke(true);
+        }
+    }
+
     public int InstanceDeathCount
     {
         get
@@ -30,7 +40,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public float Health { get { return InstanceDeathCount / _gameOverCount; } }
+    public float Health { get { return (_gameOverCount - InstanceDeathCount) / (float) _gameOverCount; } }
     public float GameTime { get { return _gameEnabled ? Time.time - _timeGameStart : 0f; } }
     public int BreakablesCount { get { return _instanceList.Count; } }
     public bool IsGameOver { get { return InstanceDeathCount >= _gameOverCount; } }
