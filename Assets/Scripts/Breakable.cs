@@ -59,7 +59,7 @@ public class Breakable : MonoBehaviour
 
         health = Mathf.Min(health + damage, HealthMax);
         Debug.Log("Healed " + transform.name + " for " + damage + " to " + health);
-        if(isFixed())
+        if (isFixed())
         {
             Fix();
 
@@ -122,8 +122,10 @@ public class Breakable : MonoBehaviour
         foreach (GameObject part in parts)
         {
             part.AddComponent<Rigidbody>();
+            part.AddComponent<ChildrenCollisionRecognizer>().breakable = this;
         }
         basePart.AddComponent<Rigidbody>().isKinematic = true;
+        basePart.AddComponent<ChildrenCollisionRecognizer>().breakable = this;
     }
 
     [MyBox.ButtonMethod]
@@ -132,10 +134,11 @@ public class Breakable : MonoBehaviour
         foreach (GameObject part in parts)
         {
             Destroy(part.GetComponent<Rigidbody>());
-            Destroy(basePart.GetComponent<Rigidbody>());
+            Destroy(part.GetComponent<ChildrenCollisionRecognizer>());
             AnimateToDefault(part.transform, 1.0f);
-
         }
+        Destroy(basePart.GetComponent<Rigidbody>());
+        Destroy(basePart.GetComponent<ChildrenCollisionRecognizer>());
     }
 
     public IEnumerator MoveToPosition(Transform objectToMove, Vector3 position, Quaternion rotation, float time)
@@ -148,12 +151,12 @@ public class Breakable : MonoBehaviour
             objectToMove.localPosition = Vector3.Lerp(startingPos, position, (elapsedTime / time));
             objectToMove.localRotation = Quaternion.Lerp(startingRot, rotation, (elapsedTime / time));
             elapsedTime += Time.deltaTime;
-            if ((elapsedTime / time) > 0.98f) 
+            if ((elapsedTime / time) > 0.98f)
             {
                 objectToMove.localPosition = position;
                 objectToMove.localRotation = rotation;
             }
-     
+
             yield return null;
         }
     }
@@ -164,11 +167,11 @@ public class Breakable : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    public void Collision(Collision collision)
     {
-        if (!isFixed())
+        if (!isFixed() && collision.transform.tag.Equals("Hammer"))
         {
-            Fixer fixer = collision.gameObject.GetComponent<Fixer>();
+            Fixer fixer = collision.rigidbody.gameObject.GetComponent<Fixer>();
 
             if (fixer != null && fixer.getFixerType().Equals(fixerType))
             {
