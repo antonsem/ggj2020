@@ -10,12 +10,14 @@ public class UserInterfaceController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _timer;
     [SerializeField] private TextMeshProUGUI _Items;
     [SerializeField] private TextMeshProUGUI _health;
+    [SerializeField] private GameObject _gameOver;
 
     private void Update()
     {
         UpdateTimer();
         UpdateItems();
         UpdateHealth();
+        UpdateGameOver();
     }
 
     private void UpdateTimer()
@@ -52,5 +54,10 @@ public class UserInterfaceController : MonoBehaviour
         text += health >= 1f ? "*" : "-";
 
         _health.text = text;
+    }
+
+    private void UpdateGameOver()
+    {
+        _gameOver.SetActive(gameManager.IsGameOver);
     }
 }
