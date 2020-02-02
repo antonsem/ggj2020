@@ -402,8 +402,8 @@ MonoBehaviour:
   interactable: {fileID: 0}
   interactor: {fileID: 8140612595852686566}
   skipBeat: 1
-  beatTime: 0.1
-  beatImpuleAmplitude: 0.1
+  beatTime: 0.25
+  beatImpuleAmplitude: 0.25
   beatImpulseTime: 0.05
 --- !u!1 &8140612595871308634
 GameObject:
@@ -546,6 +546,6 @@ MonoBehaviour:
   interactable: {fileID: 0}
   interactor: {fileID: 1432093557417286507}
   skipBeat: 0
-  beatTime: 0.1
-  beatImpuleAmplitude: 0.1
+  beatTime: 0.25
+  beatImpuleAmplitude: 0.25
   beatImpulseTime: 0.05

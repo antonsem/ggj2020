@@ -10,6 +10,9 @@ public class Breakable : MonoBehaviour
     [SerializeField] private float _autoDamageMax;
     [SerializeField] private float _autoDamageInterval; // seconds
     [SerializeField] private Fixer defaultFixer;
+    [SerializeField] private float damageCooldown = 0.15f;
+    private float damageTimer = 0;
+
     public bool isDeath
     {
         get
@@ -50,11 +53,17 @@ public class Breakable : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (damageTimer > 0)
+            damageTimer -= Time.deltaTime;
+    }
+
     public void UndoDamage(float damage)
     {
 
         health = Mathf.Min(health + damage, HealthMax);
-        if(health<=0)
+        if (health <= 0)
         {
             foreach (GameObject part in parts)
             {
@@ -105,6 +114,8 @@ public class Breakable : MonoBehaviour
     }
     private void DoDamage(float damage)
     {
+        if (damageTimer > 0) return;
+        damageTimer = damageCooldown;
         health = Mathf.Max(health - damage, 0);
 
         Debug.Log("received damage " + damage + " health now " + health + " is death " + isDeath);
@@ -131,8 +142,8 @@ public class Breakable : MonoBehaviour
         }
         foreach (GameObject part in parts)
         {
-            part.AddComponent<Rigidbody>().AddExplosionForce(Random.Range(50, 120), new Vector3(Random.Range(-0.5f,0.5f), Random.Range(-0.5f, 0.5f),Random.Range(-0.5f, 0.5f)), 106f);
-       
+            part.AddComponent<Rigidbody>().AddExplosionForce(Random.Range(50, 120), new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)), 106f);
+
             part.AddComponent<ChildrenCollisionRecognizer>().breakable = this;
         }
         if (basePart != null)
@@ -151,8 +162,11 @@ public class Breakable : MonoBehaviour
             Destroy(part.GetComponent<ChildrenCollisionRecognizer>());
             AnimateToDefault(part.transform, 1.0f);
         }
-        Destroy(basePart.GetComponent<Rigidbody>());
-        Destroy(basePart.GetComponent<ChildrenCollisionRecognizer>());
+        if (basePart)
+        {
+            Destroy(basePart.GetComponent<Rigidbody>());
+            Destroy(basePart.GetComponent<ChildrenCollisionRecognizer>());
+        }
     }
 
     public IEnumerator MoveToPosition(Transform objectToMove, Vector3 position, Quaternion rotation, float time)
@@ -181,14 +195,27 @@ public class Breakable : MonoBehaviour
     }
 
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Collision(collision);
+    }
+
     public void Collision(Collision collision)
     {
-        if (!isFixed() && collision.rigidbody.gameObject.TryGetComponent(out Fixer fixer))
+        if (collision.rigidbody && collision.rigidbody.gameObject.TryGetComponent(out Fixer fixer))
         {
-            if (fixer.controller.GotTheBeat)
-                UndoDamage(fixer.getHealingPower());
+            if (!isFixed() && fixer.controller)
+            {
+                if (fixer.controller.GotTheBeat)
+                    UndoDamage(fixer.getHealingPower());
+                else
+                {
+                    DoDamage(fixer.getHealingPower());
+                    AudioPlayer.Instance.Play(SoundType.Reject, transform.position);
+                }
+            }
             else
-                AudioPlayer.Instance.Play(SoundType.Reject, transform.position);
+                DoDamage(fixer.getHealingPower());
         }
     }
 }

@@ -884,24 +884,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 909921473, guid: 4abcf533f8507d04e8f8309c109419a8, type: 3}
-      propertyPath: beatTime
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 909921473, guid: 4abcf533f8507d04e8f8309c109419a8, type: 3}
-      propertyPath: beatImpuleAmplitude
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140612594150574795, guid: 4abcf533f8507d04e8f8309c109419a8,
-        type: 3}
-      propertyPath: beatTime
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 8140612594150574795, guid: 4abcf533f8507d04e8f8309c109419a8,
-        type: 3}
-      propertyPath: beatImpuleAmplitude
-      value: 0.25
-      objectReference: {fileID: 0}
     - target: {fileID: 8140612595391871575, guid: 4abcf533f8507d04e8f8309c109419a8,
         type: 3}
       propertyPath: m_Name
