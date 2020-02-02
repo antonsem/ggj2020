@@ -31,10 +31,10 @@ public class Fixer : MonoBehaviour
     private void Update()
     {
         if (visualize && controller && controller.GotTheBeat)
-            beatIndicator.SetActive(true);
-        else if (controller && !controller.GotTheBeat)
-        {
             beatIndicator.SetActive(false);
+        else if (!controller || !controller.GotTheBeat)
+        {
+            beatIndicator.SetActive(true);
             visualize = false;
         }
     }

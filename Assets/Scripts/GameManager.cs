@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private bool _autostart;
 
-    private Coroutine _scoreCounter;
+    private bool playing = false;
+    private IEnumerator _scoreCounter;
 
     private void Start()
     {
@@ -78,7 +79,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public float Health {
+    public float Health
+    {
         get
         {
             var segmentSize = 1f / _gameOverCount;
@@ -86,7 +88,7 @@ public class GameManager : MonoBehaviour
 
             var undeadCount = (_instanceList.Count - instanceDeathCount) + 1;
 
-            var progressMicro = (undeadCount -InstanceDamagedCount) / (float) undeadCount;
+            var progressMicro = (undeadCount - InstanceDamagedCount) / (float)undeadCount;
             var progressMacro = (_gameOverCount - instanceDeathCount) / (float)_gameOverCount;
 
             var progress = Mathf.Max(progressMacro - segmentSize + progressMicro * segmentSize, 0f);
@@ -114,6 +116,8 @@ public class GameManager : MonoBehaviour
 
     private void OnSetGameEnabled(bool value)
     {
+        playing = value;
+
         if (_scoreCounter != null)
         {
             StopCoroutine(_scoreCounter);
@@ -124,7 +128,8 @@ public class GameManager : MonoBehaviour
         {
             Initialize();
 
-            _scoreCounter = StartCoroutine(ScoreCounter());
+            _scoreCounter = ScoreCounter();
+            StartCoroutine(_scoreCounter);
         }
 
         _gameEnabled = value;
@@ -132,7 +137,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("HEALTH: " + Health);
         ScoreWheelController.SetScoreWheelValue?.Invoke(Health);
 
         if (!_gameEnabled || IsGameOver)
@@ -185,7 +189,7 @@ public class GameManager : MonoBehaviour
     {
         var score = 0;
 
-        while (true)
+        while (playing)
         {
             yield return new WaitForSeconds(1f);
 

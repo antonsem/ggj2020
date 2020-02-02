@@ -401,6 +401,7 @@ MonoBehaviour:
   controller: {fileID: 8140612595852686585}
   interactable: {fileID: 0}
   interactor: {fileID: 8140612595852686566}
+  beatOffset: 1
   skipBeat: 1
   beatTime: 0.25
   beatImpuleAmplitude: 0.25
@@ -545,7 +546,8 @@ MonoBehaviour:
   controller: {fileID: 8140612595871308639}
   interactable: {fileID: 0}
   interactor: {fileID: 1432093557417286507}
-  skipBeat: 0
+  beatOffset: 0
+  skipBeat: 1
   beatTime: 0.25
   beatImpuleAmplitude: 0.25
   beatImpulseTime: 0.05

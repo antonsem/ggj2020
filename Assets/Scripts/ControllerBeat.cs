@@ -13,6 +13,8 @@ public class ControllerBeat : MonoBehaviour
     private XRDirectInteractor interactor;
 
     [SerializeField]
+    private int beatOffset = 0;
+    [SerializeField]
     private int skipBeat = 0;
     private int beat = 0;
     [SerializeField]
@@ -31,6 +33,7 @@ public class ControllerBeat : MonoBehaviour
         Events.preBeat.AddListener(PreBeat);
         interactor.onSelectEnter.AddListener(OnSelect);
         interactor.onSelectExit.AddListener(OnDeselect);
+        beat = beatOffset;
     }
 
     private void OnSelect(XRBaseInteractable _interactable)
@@ -78,7 +81,8 @@ public class ControllerBeat : MonoBehaviour
 
     private void PreBeat(float buffer)
     {
-        beatTimer = beatTime + buffer;
+        if (beat + 1 > skipBeat)
+            beatTimer = beatTime + buffer;
     }
 
     private void Reset()

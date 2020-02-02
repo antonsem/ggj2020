@@ -4,23 +4,43 @@ using UnityEngine;
 
 public class CylinderManager : MonoBehaviour
 {
-    Quaternion plus = Quaternion.Euler(90f, 0, 0);
-    Quaternion plusSmaller = Quaternion.Euler(90.00001f, 0, 0);
-    Quaternion minus = Quaternion.Euler(-90f, 0, 0);
-    
+    private Quaternion plus = Quaternion.Euler(90f, 0, 0);
+    private Quaternion plusSmaller = Quaternion.Euler(90.00001f, 0, 0);
+    private Quaternion minus = Quaternion.Euler(-90f, 0, 0);
+
     public List<GameObject> numbers;
-    float defaultSpeed = 0.5f;
+    private float defaultSpeed = 0.5f;
     private int currentNumber = 0;
 
-    public int rotateToNumber = 7; 
+    public int rotateToNumber = 7;
+
+    private bool isPlaying = false;
+    private float lastUpdate = 0;
 
     private void Start()
     {
         initClocks();
     }
 
+    private void OnEnable()
+    {
+        GameManager.SetGameEnabled += SetPlaying;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.SetGameEnabled -= SetPlaying;
+    }
+
+    private void SetPlaying(bool state)
+    {
+        isPlaying = state;
+        if (state)
+            initClocks();
+    }
+
     private void initClocks()
-    { 
+    {
         foreach (GameObject n in numbers)
         {
             n.transform.localRotation = minus;
@@ -39,7 +59,7 @@ public class CylinderManager : MonoBehaviour
 
     public void RotateNext(float speed)
     {
-        switch(currentNumber)
+        switch (currentNumber)
         {
             case 0:
             case 1:
@@ -48,13 +68,13 @@ public class CylinderManager : MonoBehaviour
             case 4:
             case 5:
             case 6:
-            case 7:        
+            case 7:
                 {
-                    numbers[currentNumber+2].transform.localRotation = minus;
+                    numbers[currentNumber + 2].transform.localRotation = minus;
                     numbers[currentNumber + 2].SetActive(true);
                     StartCoroutine(RotateFromTo(numbers[currentNumber + 1], minus, plus, numbers[currentNumber], speed));
-                    currentNumber = (currentNumber + 1)%10;
-                    
+                    currentNumber = (currentNumber + 1) % 10;
+
                 }
 
                 break;
@@ -74,7 +94,6 @@ public class CylinderManager : MonoBehaviour
                     numbers[0].transform.localRotation = plusSmaller;
                     StartCoroutine(RotateFromTo(numbers[0], plusSmaller, minus, numbers[currentNumber], speed));
                     currentNumber = 0;
-
                 }
                 break;
 
@@ -83,9 +102,7 @@ public class CylinderManager : MonoBehaviour
         }
     }
 
-
-
-    private IEnumerator RotateFromTo(GameObject go,Quaternion from, Quaternion to, GameObject objectToDisable, float time)
+    private IEnumerator RotateFromTo(GameObject go, Quaternion from, Quaternion to, GameObject objectToDisable, float time)
     {
         float elapsedTime = 0;
         while (elapsedTime < time)
@@ -97,36 +114,42 @@ public class CylinderManager : MonoBehaviour
 
                 go.transform.localRotation = to;
                 objectToDisable.SetActive(false);
-               
+
             }
 
             yield return null;
         }
     }
     [MyBox.ButtonMethod]
-   public void RotateToTargetNumber()
+    public void RotateToTargetNumber()
     {
         RotateToTargetNumber(rotateToNumber);
     }
 
     public void RotateToTargetNumber(int number)
     {
-        if (currentNumber != number)
+        if (lastUpdate > 0) return;
+        lastUpdate = 2;
+        if (currentNumber != number && isPlaying)
             StartCoroutine(rotate(number));
     }
 
     private IEnumerator rotate(int number)
     {
-        RotateNext(0.4f);
-         yield return new WaitForSeconds(0.5f);
+        if (!isPlaying)
+            yield break;
 
-        if(currentNumber != number)
-        StartCoroutine(rotate(number));
-        
+        RotateNext(0.4f);
+        yield return new WaitForSeconds(0.5f);
+
+        if (currentNumber != number)
+            StartCoroutine(rotate(number));
+
     }
 
-
-
-
-
+    private void Update()
+    {
+        if (lastUpdate > 0)
+            lastUpdate -= Time.deltaTime;
+    }
 }

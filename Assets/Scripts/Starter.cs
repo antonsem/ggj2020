@@ -19,7 +19,7 @@ public class Starter : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.SetGameEnabled += OnSetGameEnabled;
+        GameManager.SetGameEnabled -= OnSetGameEnabled;
     }
 
     private void Update()
@@ -38,6 +38,12 @@ public class Starter : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
+    {
+        GameManager.SetGameEnabled?.Invoke(true);
+    }
+
+    [MyBox.ButtonMethod]
+    private void StartGame()
     {
         GameManager.SetGameEnabled?.Invoke(true);
     }

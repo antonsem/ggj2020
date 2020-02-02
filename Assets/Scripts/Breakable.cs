@@ -49,14 +49,34 @@ public class Breakable : MonoBehaviour
                     basePart = grandChildren.gameObject;
                 }
             }
-
         }
+    }
+
+    private void OnEnable()
+    {
+        GameManager.SetGameEnabled += OnGameStart;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.SetGameEnabled -= OnGameStart;
     }
 
     private void Update()
     {
         if (damageTimer > 0)
             damageTimer -= Time.deltaTime;
+    }
+
+    private void OnGameStart(bool state)
+    {
+        if (state)
+            Fix();
+        else
+        {
+            Break();
+            health = 0;
+        }
     }
 
     public void UndoDamage(float damage)
@@ -114,9 +134,9 @@ public class Breakable : MonoBehaviour
     }
     private void DoDamage(float damage)
     {
-        if (damageTimer > 0) return;
+        if (damageTimer > 0 || isDeath) return;
         damageTimer = damageCooldown;
-        health = Mathf.Max(health - damage, 0);
+        health -= damage;
 
         Debug.Log("received damage " + damage + " health now " + health + " is death " + isDeath);
     }
@@ -140,16 +160,36 @@ public class Breakable : MonoBehaviour
         {
             GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
         }
-        foreach (GameObject part in parts)
+        for (int i = 0; i < parts.Count; i++)
         {
-            part.AddComponent<Rigidbody>().AddExplosionForce(Random.Range(50, 120), new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)), 106f);
+            if (!parts[i])
+            {
+                parts.Remove(parts[i]);
+                continue;
+            }
 
-            part.AddComponent<ChildrenCollisionRecognizer>().breakable = this;
+            if (parts[i].TryGetComponent(out Rigidbody rb))
+                rb.AddExplosionForce(Random.Range(50, 120), new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)), 106f);
+            else
+                parts[i].AddComponent<Rigidbody>().AddExplosionForce(Random.Range(50, 120), new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)), 106f);
+
+            if (parts[i].TryGetComponent(out ChildrenCollisionRecognizer child))
+                child.breakable = this;
+            else
+                parts[i].AddComponent<ChildrenCollisionRecognizer>().breakable = this;
         }
+
         if (basePart != null)
         {
-            basePart.AddComponent<Rigidbody>().isKinematic = true;
-            basePart.AddComponent<ChildrenCollisionRecognizer>().breakable = this;
+            if (basePart.TryGetComponent(out Rigidbody rb))
+                rb.isKinematic = true;
+            else
+                basePart.AddComponent<Rigidbody>().isKinematic = true;
+
+            if (basePart.TryGetComponent(out ChildrenCollisionRecognizer child))
+                child.breakable = this;
+            else
+                basePart.AddComponent<ChildrenCollisionRecognizer>().breakable = this;
         }
     }
 
@@ -193,7 +233,6 @@ public class Breakable : MonoBehaviour
     {
         StartCoroutine(MoveToPosition(objectToMove, Vector3.zero, Quaternion.identity, time));
     }
-
 
     private void OnCollisionEnter(Collision collision)
     {
